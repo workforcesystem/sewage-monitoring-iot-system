@@ -34,18 +34,18 @@ const Dashboard = () => {
       const [latestResponse, recentResponse, statsResponse] =
         await Promise.all([
 
-          api.get("/sensors/latest"),
-          api.get("/sensors/recent"),
-          api.get("/sensors/stats")
-          // axios.get("http://localhost:5050/api/sensors/latest", {
+          api.get("/api/sensors/latest"),
+          api.get("/api/sensors/recent"),
+          api.get("/api/sensors/stats")
+          // axios.get("/api/sensors/latest", {
           //   withCredentials: true,
           // }),
 
-          // axios.get("http://localhost:5050/api/sensors/recent", {
+          // axios.get("/api/sensors/recent", {
           //   withCredentials: true,
           // }),
 
-          // axios.get("http://localhost:5050/api/sensors/stats", {
+          // axios.get("/api/sensors/stats", {
           //   withCredentials: true,
           // }),
         ]);
