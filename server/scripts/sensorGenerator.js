@@ -10,7 +10,7 @@ const generateWaterLevel = () => {
 };
 
 const getStatus = (waterLevel) => {
-  if (waterLevel >= 85) {
+  if (waterLevel >= 90) {
     return "CRITICAL";
   }
 
@@ -51,7 +51,7 @@ const startGenerator = async () => {
   await generateReading();
 
   // Generate a new reading every 5 seconds
-  setInterval(generateReading, 5000);
+  setInterval(generateReading, 2000);
 };
 
 startGenerator();

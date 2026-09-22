@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
-import axios from "axios";
+// import axios from "axios";
+import api from "../services/api";
 import {
   LineChart,
   Line,
@@ -32,17 +33,21 @@ const Dashboard = () => {
 
       const [latestResponse, recentResponse, statsResponse] =
         await Promise.all([
-          axios.get("http://localhost:5050/api/sensors/latest", {
-            withCredentials: true,
-          }),
 
-          axios.get("http://localhost:5050/api/sensors/recent", {
-            withCredentials: true,
-          }),
+          api.get("/sensors/latest"),
+          api.get("/sensors/recent"),
+          api.get("/sensors/stats")
+          // axios.get("http://localhost:5050/api/sensors/latest", {
+          //   withCredentials: true,
+          // }),
 
-          axios.get("http://localhost:5050/api/sensors/stats", {
-            withCredentials: true,
-          }),
+          // axios.get("http://localhost:5050/api/sensors/recent", {
+          //   withCredentials: true,
+          // }),
+
+          // axios.get("http://localhost:5050/api/sensors/stats", {
+          //   withCredentials: true,
+          // }),
         ]);
 
       // Latest reading
@@ -91,9 +96,20 @@ const Dashboard = () => {
     }
   };
 
+  // useEffect(() => {
+  //   fetchDashboardData();
+  // }, []);
+
+
   useEffect(() => {
+  fetchDashboardData();
+
+  const interval = setInterval(() => {
     fetchDashboardData();
-  }, []);
+  }, 3500);
+
+  return () => clearInterval(interval);
+}, []);
 
   // --------------------------------
   // Chart data
