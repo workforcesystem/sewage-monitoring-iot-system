@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
+import ThemeToggle from "../components/ThemeToggle";
 
 const Login = () => {
   const { login } = useAuth();
@@ -35,31 +36,36 @@ const Login = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gray-950 text-white flex items-center justify-center px-4">
-      <div className="w-full max-w-md">
+    <div className="min-h-screen bg-gray-50 text-gray-900 dark:bg-gray-950 dark:text-white flex items-center justify-center px-4">
 
-        <div className="mb-8 text-center">
-          <h1 className="text-3xl font-bold">
+      <div className="absolute top-4 right-4">
+        <ThemeToggle />
+      </div>
+
+      <div className="w-full max-w-sm">
+
+        <div className="mb-6 text-center">
+          <h1 className="text-xl font-bold">
             Sewage Monitoring
           </h1>
 
-          <p className="text-gray-400 mt-2">
+          <p className="text-gray-500 dark:text-gray-400 mt-1.5 text-sm">
             Sign in to your account
           </p>
         </div>
 
-        <div className="bg-gray-900 border border-gray-800 rounded-2xl p-8 shadow-xl">
+        <div className="bg-white border border-gray-200 rounded-2xl p-6 shadow-sm dark:bg-gray-900 dark:border-gray-800 dark:shadow-xl">
 
           {error && (
-            <div className="mb-5 rounded-lg border border-red-800 bg-red-950/40 px-4 py-3 text-sm text-red-400">
+            <div className="mb-4 rounded-lg border border-red-200 bg-red-50 px-3 py-2.5 text-xs text-red-600 dark:border-red-800 dark:bg-red-950/40 dark:text-red-400">
               {error}
             </div>
           )}
 
           <form onSubmit={handleSubmit}>
 
-            <div className="mb-5">
-              <label className="block text-sm font-medium text-gray-300 mb-2">
+            <div className="mb-4">
+              <label className="block text-xs font-medium text-gray-600 dark:text-gray-300 mb-1.5">
                 Email
               </label>
 
@@ -68,13 +74,13 @@ const Login = () => {
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 placeholder="Enter your email"
-                className="w-full rounded-lg border border-gray-700 bg-gray-800 px-4 py-3 text-white outline-none focus:border-blue-500"
+                className="w-full rounded-lg border border-gray-200 bg-gray-50 px-3 py-2.5 text-sm text-gray-900 outline-none focus:border-blue-500 dark:border-gray-700 dark:bg-gray-800 dark:text-white"
                 required
               />
             </div>
 
-            <div className="mb-6">
-              <label className="block text-sm font-medium text-gray-300 mb-2">
+            <div className="mb-5">
+              <label className="block text-xs font-medium text-gray-600 dark:text-gray-300 mb-1.5">
                 Password
               </label>
 
@@ -83,7 +89,7 @@ const Login = () => {
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 placeholder="Enter your password"
-                className="w-full rounded-lg border border-gray-700 bg-gray-800 px-4 py-3 text-white outline-none focus:border-blue-500"
+                className="w-full rounded-lg border border-gray-200 bg-gray-50 px-3 py-2.5 text-sm text-gray-900 outline-none focus:border-blue-500 dark:border-gray-700 dark:bg-gray-800 dark:text-white"
                 required
               />
             </div>
@@ -91,7 +97,7 @@ const Login = () => {
             <button
               type="submit"
               disabled={submitting}
-              className="w-full rounded-lg bg-blue-600 py-3 font-semibold transition hover:bg-blue-700 disabled:cursor-not-allowed disabled:opacity-50"
+              className="w-full rounded-lg bg-blue-600 py-2.5 text-sm font-semibold text-white transition hover:bg-blue-700 disabled:cursor-not-allowed disabled:opacity-50"
             >
               {submitting ? "Signing in..." : "Sign In"}
             </button>

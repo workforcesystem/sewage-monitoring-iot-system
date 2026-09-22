@@ -106,33 +106,33 @@ const UserManagement = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gray-950 text-white">
+    <div className="min-h-screen bg-gray-50 text-gray-900 dark:bg-gray-950 dark:text-white">
 
       <Sidebar />
 
       <Navbar />
 
-      <main className="ml-64 pt-20">
+      <main className="ml-56 pt-14">
 
-        <div className="p-6">
+        <div className="p-5">
 
           {/* Header */}
 
-          <div className="mb-8 flex items-center justify-between">
+          <div className="mb-6 flex items-center justify-between">
 
             <div>
-              <h1 className="text-2xl font-bold">
+              <h1 className="text-lg font-bold">
                 User Management
               </h1>
 
-              <p className="mt-1 text-sm text-gray-500">
+              <p className="mt-0.5 text-xs text-gray-500 dark:text-gray-500">
                 Manage administrators of the monitoring system
               </p>
             </div>
 
             <button
               onClick={() => setShowCreateForm(true)}
-              className="flex items-center gap-2 rounded-lg bg-blue-600 px-4 py-2.5 font-medium hover:bg-blue-700"
+              className="flex items-center gap-1.5 rounded-lg bg-blue-600 px-3 py-2 text-xs font-medium text-white hover:bg-blue-700"
             >
               <i className="bi bi-person-plus" />
               Add Admin
@@ -143,22 +143,22 @@ const UserManagement = () => {
           {/* Error */}
 
           {error && (
-            <div className="mb-5 rounded-lg border border-red-500/20 bg-red-500/10 px-4 py-3 text-sm text-red-400">
+            <div className="mb-4 rounded-lg border border-red-200 bg-red-50 px-3 py-2.5 text-xs text-red-600 dark:border-red-500/20 dark:bg-red-500/10 dark:text-red-400">
               {error}
             </div>
           )}
 
           {/* Users Table */}
 
-          <div className="overflow-hidden rounded-xl border border-gray-800 bg-gray-900">
+          <div className="overflow-hidden rounded-xl border border-gray-200 bg-white dark:border-gray-800 dark:bg-gray-900">
 
-            <div className="border-b border-gray-800 px-6 py-5">
+            <div className="border-b border-gray-200 px-4 py-3 dark:border-gray-800">
 
-              <h2 className="font-semibold">
+              <h2 className="text-sm font-semibold">
                 System Users
               </h2>
 
-              <p className="mt-1 text-sm text-gray-500">
+              <p className="mt-0.5 text-xs text-gray-500 dark:text-gray-500">
                 Administrators with access to the system
               </p>
 
@@ -166,28 +166,28 @@ const UserManagement = () => {
 
             <div className="overflow-x-auto">
 
-              <table className="w-full text-left text-sm">
+              <table className="w-full text-left text-xs">
 
-                <thead className="border-b border-gray-800 bg-gray-950/50">
+                <thead className="border-b border-gray-200 bg-gray-50 dark:border-gray-800 dark:bg-gray-950/50">
 
                   <tr>
-                    <th className="px-6 py-4 text-gray-500">
+                    <th className="px-4 py-2.5 text-gray-500 dark:text-gray-500">
                       Name
                     </th>
 
-                    <th className="px-6 py-4 text-gray-500">
+                    <th className="px-4 py-2.5 text-gray-500 dark:text-gray-500">
                       Email
                     </th>
 
-                    <th className="px-6 py-4 text-gray-500">
+                    <th className="px-4 py-2.5 text-gray-500 dark:text-gray-500">
                       Role
                     </th>
 
-                    <th className="px-6 py-4 text-gray-500">
+                    <th className="px-4 py-2.5 text-gray-500 dark:text-gray-500">
                       Created
                     </th>
 
-                    <th className="px-6 py-4 text-right text-gray-500">
+                    <th className="px-4 py-2.5 text-right text-gray-500 dark:text-gray-500">
                       Actions
                     </th>
                   </tr>
@@ -200,7 +200,7 @@ const UserManagement = () => {
                     <tr>
                       <td
                         colSpan="5"
-                        className="px-6 py-10 text-center text-gray-500"
+                        className="px-4 py-8 text-center text-gray-500 dark:text-gray-500"
                       >
                         Loading users...
                       </td>
@@ -209,7 +209,7 @@ const UserManagement = () => {
                     <tr>
                       <td
                         colSpan="5"
-                        className="px-6 py-10 text-center text-gray-500"
+                        className="px-4 py-8 text-center text-gray-500 dark:text-gray-500"
                       >
                         No users found.
                       </td>
@@ -218,14 +218,14 @@ const UserManagement = () => {
                     users.map((user) => (
                       <tr
                         key={user._id}
-                        className="border-b border-gray-800/50"
+                        className="border-b border-gray-100 dark:border-gray-800/50"
                       >
 
-                        <td className="px-6 py-4">
+                        <td className="px-4 py-2.5">
 
-                          <div className="flex items-center gap-3">
+                          <div className="flex items-center gap-2.5">
 
-                            <div className="flex h-9 w-9 items-center justify-center rounded-full bg-blue-600 text-sm font-medium">
+                            <div className="flex h-7 w-7 items-center justify-center rounded-full bg-blue-600 text-xs font-medium text-white">
                               {user.name
                                 ?.charAt(0)
                                 .toUpperCase()}
@@ -239,17 +239,17 @@ const UserManagement = () => {
 
                         </td>
 
-                        <td className="px-6 py-4 text-gray-400">
+                        <td className="px-4 py-2.5 text-gray-500 dark:text-gray-400">
                           {user.email}
                         </td>
 
-                        <td className="px-6 py-4">
+                        <td className="px-4 py-2.5">
 
                           <span
-                            className={`rounded-full px-3 py-1 text-xs font-medium ${
+                            className={`rounded-full px-2.5 py-0.5 text-[11px] font-medium ${
                               user.role === "SuperAdmin"
-                                ? "bg-purple-500/10 text-purple-400"
-                                : "bg-blue-500/10 text-blue-400"
+                                ? "bg-purple-500/10 text-purple-600 dark:text-purple-400"
+                                : "bg-blue-500/10 text-blue-600 dark:text-blue-400"
                             }`}
                           >
                             {user.role}
@@ -257,7 +257,7 @@ const UserManagement = () => {
 
                         </td>
 
-                        <td className="px-6 py-4 text-gray-400">
+                        <td className="px-4 py-2.5 text-gray-500 dark:text-gray-400">
                           {user.createdAt
                             ? new Date(
                                 user.createdAt
@@ -265,7 +265,7 @@ const UserManagement = () => {
                             : "--"}
                         </td>
 
-                        <td className="px-6 py-4">
+                        <td className="px-4 py-2.5">
 
                           <div className="flex justify-end">
 
@@ -274,7 +274,7 @@ const UserManagement = () => {
                                 onClick={() =>
                                   handleDelete(user._id)
                                 }
-                                className="rounded-lg bg-red-500/10 px-3 py-2 text-red-400 hover:bg-red-500/20"
+                                className="rounded-lg bg-red-500/10 px-2.5 py-1.5 text-red-500 hover:bg-red-500/20 dark:text-red-400"
                               >
                                 <i className="bi bi-trash" />
                               </button>
@@ -303,17 +303,17 @@ const UserManagement = () => {
       {/* Create Admin Modal */}
 
       {showCreateForm && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/70">
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 dark:bg-black/70">
 
-          <div className="w-full max-w-md rounded-xl border border-gray-800 bg-gray-900 p-6">
+          <div className="w-full max-w-sm rounded-xl border border-gray-200 bg-white p-5 dark:border-gray-800 dark:bg-gray-900">
 
-            <div className="mb-6">
+            <div className="mb-4">
 
-              <h2 className="text-lg font-semibold">
+              <h2 className="text-base font-semibold">
                 Create Admin
               </h2>
 
-              <p className="mt-1 text-sm text-gray-500">
+              <p className="mt-0.5 text-xs text-gray-500 dark:text-gray-500">
                 Create a new administrator account.
               </p>
 
@@ -321,9 +321,9 @@ const UserManagement = () => {
 
             <form onSubmit={handleCreateAdmin}>
 
-              <div className="mb-4">
+              <div className="mb-3">
 
-                <label className="mb-2 block text-sm text-gray-400">
+                <label className="mb-1.5 block text-xs text-gray-500 dark:text-gray-400">
                   Name
                 </label>
 
@@ -334,14 +334,14 @@ const UserManagement = () => {
                   onChange={handleChange}
                   required
                   placeholder="Enter name"
-                  className="w-full rounded-lg border border-gray-700 bg-gray-950 px-4 py-3 text-white outline-none focus:border-blue-500"
+                  className="w-full rounded-lg border border-gray-200 bg-gray-50 px-3 py-2 text-sm text-gray-900 outline-none focus:border-blue-500 dark:border-gray-700 dark:bg-gray-950 dark:text-white"
                 />
 
               </div>
 
-              <div className="mb-4">
+              <div className="mb-3">
 
-                <label className="mb-2 block text-sm text-gray-400">
+                <label className="mb-1.5 block text-xs text-gray-500 dark:text-gray-400">
                   Email
                 </label>
 
@@ -352,14 +352,14 @@ const UserManagement = () => {
                   onChange={handleChange}
                   required
                   placeholder="admin@example.com"
-                  className="w-full rounded-lg border border-gray-700 bg-gray-950 px-4 py-3 text-white outline-none focus:border-blue-500"
+                  className="w-full rounded-lg border border-gray-200 bg-gray-50 px-3 py-2 text-sm text-gray-900 outline-none focus:border-blue-500 dark:border-gray-700 dark:bg-gray-950 dark:text-white"
                 />
 
               </div>
 
-              <div className="mb-6">
+              <div className="mb-5">
 
-                <label className="mb-2 block text-sm text-gray-400">
+                <label className="mb-1.5 block text-xs text-gray-500 dark:text-gray-400">
                   Password
                 </label>
 
@@ -371,24 +371,24 @@ const UserManagement = () => {
                   required
                   minLength="6"
                   placeholder="Enter password"
-                  className="w-full rounded-lg border border-gray-700 bg-gray-950 px-4 py-3 text-white outline-none focus:border-blue-500"
+                  className="w-full rounded-lg border border-gray-200 bg-gray-50 px-3 py-2 text-sm text-gray-900 outline-none focus:border-blue-500 dark:border-gray-700 dark:bg-gray-950 dark:text-white"
                 />
 
               </div>
 
-              <div className="flex justify-end gap-3">
+              <div className="flex justify-end gap-2.5">
 
                 <button
                   type="button"
                   onClick={() => setShowCreateForm(false)}
-                  className="rounded-lg border border-gray-700 px-4 py-2 text-gray-400 hover:bg-gray-800"
+                  className="rounded-lg border border-gray-200 px-3 py-1.5 text-xs text-gray-500 hover:bg-gray-100 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-800"
                 >
                   Cancel
                 </button>
 
                 <button
                   type="submit"
-                  className="rounded-lg bg-blue-600 px-4 py-2 font-medium hover:bg-blue-700"
+                  className="rounded-lg bg-blue-600 px-3 py-1.5 text-xs font-medium text-white hover:bg-blue-700"
                 >
                   Create Admin
                 </button>

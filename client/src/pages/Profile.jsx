@@ -81,24 +81,24 @@ const Profile = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gray-950 text-white">
+    <div className="min-h-screen bg-gray-50 text-gray-900 dark:bg-gray-950 dark:text-white">
 
       <Sidebar />
 
       <Navbar />
 
-      <main className="ml-64 pt-20">
+      <main className="ml-56 pt-14">
 
-        <div className="p-6">
+        <div className="p-5">
 
           {/* Header */}
 
-          <div className="mb-8">
-            <h1 className="text-2xl font-bold">
+          <div className="mb-6">
+            <h1 className="text-lg font-bold">
               My Profile
             </h1>
 
-            <p className="mt-1 text-sm text-gray-500">
+            <p className="mt-0.5 text-xs text-gray-500 dark:text-gray-500">
               View and manage your account information
             </p>
           </div>
@@ -106,7 +106,7 @@ const Profile = () => {
           {/* Success Message */}
 
           {message && (
-            <div className="mb-5 max-w-2xl rounded-lg border border-green-500/20 bg-green-500/10 px-4 py-3 text-sm text-green-400">
+            <div className="mb-4 max-w-xl rounded-lg border border-green-200 bg-green-50 px-3 py-2.5 text-xs text-green-600 dark:border-green-500/20 dark:bg-green-500/10 dark:text-green-400">
               {message}
             </div>
           )}
@@ -114,35 +114,35 @@ const Profile = () => {
           {/* Error Message */}
 
           {error && (
-            <div className="mb-5 max-w-2xl rounded-lg border border-red-500/20 bg-red-500/10 px-4 py-3 text-sm text-red-400">
+            <div className="mb-4 max-w-xl rounded-lg border border-red-200 bg-red-50 px-3 py-2.5 text-xs text-red-600 dark:border-red-500/20 dark:bg-red-500/10 dark:text-red-400">
               {error}
             </div>
           )}
 
           {/* Profile Card */}
 
-          <div className="max-w-2xl overflow-hidden rounded-xl border border-gray-800 bg-gray-900">
+          <div className="max-w-xl overflow-hidden rounded-xl border border-gray-200 bg-white dark:border-gray-800 dark:bg-gray-900">
 
             {/* Profile Header */}
 
-            <div className="flex items-center gap-5 border-b border-gray-800 p-6">
+            <div className="flex items-center gap-4 border-b border-gray-200 p-4 dark:border-gray-800">
 
-              <div className="flex h-20 w-20 items-center justify-center rounded-full bg-blue-600 text-2xl font-bold">
+              <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-full bg-blue-600 text-lg font-bold text-white">
                 {user?.name
                   ?.charAt(0)
                   .toUpperCase()}
               </div>
 
               <div>
-                <h2 className="text-xl font-semibold">
+                <h2 className="text-base font-semibold">
                   {user?.name}
                 </h2>
 
-                <p className="text-sm text-gray-500">
+                <p className="text-xs text-gray-500 dark:text-gray-500">
                   {user?.email}
                 </p>
 
-                <span className="mt-2 inline-block rounded-full bg-blue-500/10 px-3 py-1 text-xs font-medium text-blue-400">
+                <span className="mt-1.5 inline-block rounded-full bg-blue-500/10 px-2.5 py-0.5 text-[11px] font-medium text-blue-600 dark:text-blue-400">
                   {user?.role}
                 </span>
               </div>
@@ -151,18 +151,18 @@ const Profile = () => {
 
             {/* Account Information */}
 
-            <div className="p-6">
+            <div className="p-4">
 
-              <div className="mb-5 flex items-center justify-between">
+              <div className="mb-4 flex items-center justify-between">
 
-                <h3 className="font-semibold">
+                <h3 className="text-sm font-semibold">
                   Account Information
                 </h3>
 
                 {!editing && (
                   <button
                     onClick={handleEdit}
-                    className="flex items-center gap-2 rounded-lg bg-blue-600 px-4 py-2 text-sm font-medium transition hover:bg-blue-700"
+                    className="flex items-center gap-1.5 rounded-lg bg-blue-600 px-3 py-1.5 text-xs font-medium text-white transition hover:bg-blue-700"
                   >
                     <i className="bi bi-pencil" />
                     Edit Profile
@@ -175,34 +175,34 @@ const Profile = () => {
 
                 /* VIEW MODE */
 
-                <div className="space-y-5">
+                <div className="space-y-4">
 
                   <div>
-                    <p className="mb-1 text-xs text-gray-500">
+                    <p className="mb-0.5 text-[11px] text-gray-500 dark:text-gray-500">
                       Full Name
                     </p>
 
-                    <p className="text-sm text-white">
+                    <p className="text-sm text-gray-900 dark:text-white">
                       {user?.name || "—"}
                     </p>
                   </div>
 
                   <div>
-                    <p className="mb-1 text-xs text-gray-500">
+                    <p className="mb-0.5 text-[11px] text-gray-500 dark:text-gray-500">
                       Email Address
                     </p>
 
-                    <p className="text-sm text-white">
+                    <p className="text-sm text-gray-900 dark:text-white">
                       {user?.email || "—"}
                     </p>
                   </div>
 
                   <div>
-                    <p className="mb-1 text-xs text-gray-500">
+                    <p className="mb-0.5 text-[11px] text-gray-500 dark:text-gray-500">
                       Account Role
                     </p>
 
-                    <p className="text-sm text-white">
+                    <p className="text-sm text-gray-900 dark:text-white">
                       {user?.role || "—"}
                     </p>
                   </div>
@@ -215,14 +215,14 @@ const Profile = () => {
 
                 <form
                   onSubmit={handleSubmit}
-                  className="space-y-5"
+                  className="space-y-4"
                 >
 
                   {/* Name */}
 
                   <div>
 
-                    <label className="mb-2 block text-sm font-medium text-gray-400">
+                    <label className="mb-1.5 block text-xs font-medium text-gray-500 dark:text-gray-400">
                       Full Name
                     </label>
 
@@ -232,7 +232,7 @@ const Profile = () => {
                       value={formData.name}
                       onChange={handleChange}
                       required
-                      className="w-full rounded-lg border border-gray-700 bg-gray-950 px-4 py-3 text-sm text-white outline-none transition focus:border-blue-500"
+                      className="w-full rounded-lg border border-gray-200 bg-gray-50 px-3 py-2 text-sm text-gray-900 outline-none transition focus:border-blue-500 dark:border-gray-700 dark:bg-gray-950 dark:text-white"
                     />
 
                   </div>
@@ -241,7 +241,7 @@ const Profile = () => {
 
                   <div>
 
-                    <label className="mb-2 block text-sm font-medium text-gray-400">
+                    <label className="mb-1.5 block text-xs font-medium text-gray-500 dark:text-gray-400">
                       Email Address
                     </label>
 
@@ -251,7 +251,7 @@ const Profile = () => {
                       value={formData.email}
                       onChange={handleChange}
                       required
-                      className="w-full rounded-lg border border-gray-700 bg-gray-950 px-4 py-3 text-sm text-white outline-none transition focus:border-blue-500"
+                      className="w-full rounded-lg border border-gray-200 bg-gray-50 px-3 py-2 text-sm text-gray-900 outline-none transition focus:border-blue-500 dark:border-gray-700 dark:bg-gray-950 dark:text-white"
                     />
 
                   </div>
@@ -260,7 +260,7 @@ const Profile = () => {
 
                   <div>
 
-                    <label className="mb-2 block text-sm font-medium text-gray-400">
+                    <label className="mb-1.5 block text-xs font-medium text-gray-500 dark:text-gray-400">
                       Account Role
                     </label>
 
@@ -268,10 +268,10 @@ const Profile = () => {
                       type="text"
                       value={user?.role || ""}
                       disabled
-                      className="w-full cursor-not-allowed rounded-lg border border-gray-800 bg-gray-900 px-4 py-3 text-sm text-gray-500"
+                      className="w-full cursor-not-allowed rounded-lg border border-gray-200 bg-gray-100 px-3 py-2 text-sm text-gray-500 dark:border-gray-800 dark:bg-gray-900 dark:text-gray-500"
                     />
 
-                    <p className="mt-2 text-xs text-gray-600">
+                    <p className="mt-1.5 text-[11px] text-gray-400 dark:text-gray-600">
                       Your account role cannot be changed from this page.
                     </p>
 
@@ -279,12 +279,12 @@ const Profile = () => {
 
                   {/* Buttons */}
 
-                  <div className="flex justify-end gap-3 pt-2">
+                  <div className="flex justify-end gap-2.5 pt-1">
 
                     <button
                       type="button"
                       onClick={handleCancel}
-                      className="rounded-lg border border-gray-700 px-4 py-2.5 text-sm text-gray-400 transition hover:bg-gray-800 hover:text-white"
+                      className="rounded-lg border border-gray-200 px-3 py-2 text-xs text-gray-500 transition hover:bg-gray-100 hover:text-gray-900 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-800 dark:hover:text-white"
                     >
                       Cancel
                     </button>
@@ -292,7 +292,7 @@ const Profile = () => {
                     <button
                       type="submit"
                       disabled={loading}
-                      className="rounded-lg bg-blue-600 px-4 py-2.5 text-sm font-medium transition hover:bg-blue-700 disabled:cursor-not-allowed disabled:opacity-50"
+                      className="rounded-lg bg-blue-600 px-3 py-2 text-xs font-medium text-white transition hover:bg-blue-700 disabled:cursor-not-allowed disabled:opacity-50"
                     >
                       {loading
                         ? "Saving..."

@@ -7,8 +7,8 @@ const SuperAdminRoute = ({ children }) => {
   // Wait until authentication check is complete
   if (loading) {
     return (
-      <div className="flex min-h-screen items-center justify-center bg-gray-950 text-white">
-        <div className="text-gray-400">
+      <div className="flex min-h-screen items-center justify-center bg-gray-50 dark:bg-gray-950 dark:text-white">
+        <div className="text-sm text-gray-500 dark:text-gray-400">
           Checking authentication...
         </div>
       </div>

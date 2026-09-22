@@ -50,14 +50,10 @@ const Dashboard = () => {
 
       // Recent readings
       //
-      // Backend should now return:
-      // [
-      //   {...},
-      //   {...},
-      //   {...}
-      // ]
+      // Backend returns:
+      // { readings: [...], pagination: {...} }
       //
-      // This also safely handles { readings: [...] }
+      // This also safely handles a plain array
       // in case an old backend response is still running.
       const readings = Array.isArray(recentResponse.data)
         ? recentResponse.data
@@ -132,38 +128,39 @@ const Dashboard = () => {
   const getStatusClass = (status) => {
     switch (status) {
       case "CRITICAL":
-        return "text-red-400";
+        return "text-red-500 dark:text-red-400";
 
       case "WARNING":
-        return "text-yellow-400";
+        return "text-yellow-600 dark:text-yellow-400";
 
       case "NORMAL":
       case "OK":
-        return "text-green-400";
+        return "text-green-600 dark:text-green-400";
 
       default:
-        return "text-gray-400";
+        return "text-gray-500 dark:text-gray-400";
     }
   };
 
   return (
-    <div className="min-h-screen bg-[#030712] text-white">
+    <div className="min-h-screen bg-gray-50 text-gray-900 dark:bg-[#030712] dark:text-white">
 
       <Sidebar />
 
       <Navbar />
 
-      <main className="ml-64 pt-20 p-6">
+      <main className="ml-56 pt-14">
+      <div className="p-5">
       {/* -------------------------------- */}
       {/* Header */}
       {/* -------------------------------- */}
 
-      <div className="mb-8">
-        <h1 className="text-3xl font-bold">
+      <div className="mb-6">
+        <h1 className="text-xl font-bold">
           Dashboard
         </h1>
 
-        <p className="text-gray-500 mt-1">
+        <p className="text-gray-500 dark:text-gray-500 mt-0.5 text-sm">
           Welcome back, NMMC
         </p>
       </div>
@@ -173,7 +170,7 @@ const Dashboard = () => {
       {/* -------------------------------- */}
 
       {error && (
-        <div className="mb-6 rounded-lg border border-red-500/30 bg-red-500/10 px-4 py-3 text-red-400">
+        <div className="mb-4 rounded-lg border border-red-200 bg-red-50 px-3 py-2.5 text-sm text-red-600 dark:border-red-500/30 dark:bg-red-500/10 dark:text-red-400">
           {error}
         </div>
       )}
@@ -182,18 +179,18 @@ const Dashboard = () => {
       {/* Stats Cards */}
       {/* -------------------------------- */}
 
-      <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-5 mb-6">
+      <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-4 mb-4">
 
         {/* Current Water Level */}
-        <div className="bg-[#111827] border border-gray-800 rounded-xl p-6">
+        <div className="bg-white border border-gray-200 rounded-xl p-4 dark:bg-[#111827] dark:border-gray-800">
           <div className="flex items-center justify-between">
 
             <div>
-              <p className="text-gray-500 text-sm mb-3">
+              <p className="text-gray-500 dark:text-gray-500 text-xs mb-2">
                 Current Water Level
               </p>
 
-              <h2 className="text-3xl font-bold">
+              <h2 className="text-xl font-bold">
                 {loading
                   ? "--"
                   : currentWaterLevel !== undefined &&
@@ -202,29 +199,29 @@ const Dashboard = () => {
                   : "--"}
               </h2>
 
-              <p className="text-gray-500 text-sm mt-3">
+              <p className="text-gray-500 dark:text-gray-500 text-xs mt-2">
                 centimeters
               </p>
             </div>
 
-            <div className="w-12 h-12 rounded-lg bg-blue-500/10 flex items-center justify-center">
-              <i className="bi bi-droplet text-2xl text-blue-500"></i>
+            <div className="w-9 h-9 rounded-lg bg-blue-500/10 flex items-center justify-center">
+              <i className="bi bi-droplet text-base text-blue-500"></i>
             </div>
 
           </div>
         </div>
 
         {/* Plant Status */}
-        <div className="bg-[#111827] border border-gray-800 rounded-xl p-6">
+        <div className="bg-white border border-gray-200 rounded-xl p-4 dark:bg-[#111827] dark:border-gray-800">
           <div className="flex items-center justify-between">
 
             <div>
-              <p className="text-gray-500 text-sm mb-3">
+              <p className="text-gray-500 dark:text-gray-500 text-xs mb-2">
                 Plant Status
               </p>
 
               <h2
-                className={`text-2xl font-bold ${getStatusClass(
+                className={`text-lg font-bold ${getStatusClass(
                   currentStatus
                 )}`}
               >
@@ -232,50 +229,50 @@ const Dashboard = () => {
               </h2>
             </div>
 
-            <div className="w-12 h-12 rounded-lg bg-green-500/10 flex items-center justify-center">
-              <i className="bi bi-check-circle text-2xl text-green-500"></i>
+            <div className="w-9 h-9 rounded-lg bg-green-500/10 flex items-center justify-center">
+              <i className="bi bi-check-circle text-base text-green-500"></i>
             </div>
 
           </div>
         </div>
 
         {/* Today's Readings */}
-        <div className="bg-[#111827] border border-gray-800 rounded-xl p-6">
+        <div className="bg-white border border-gray-200 rounded-xl p-4 dark:bg-[#111827] dark:border-gray-800">
           <div className="flex items-center justify-between">
 
             <div>
-              <p className="text-gray-500 text-sm mb-3">
+              <p className="text-gray-500 dark:text-gray-500 text-xs mb-2">
                 Today's Readings
               </p>
 
-              <h2 className="text-3xl font-bold">
+              <h2 className="text-xl font-bold">
                 {stats.todayReadings}
               </h2>
             </div>
 
-            <div className="w-12 h-12 rounded-lg bg-purple-500/10 flex items-center justify-center">
-              <i className="bi bi-activity text-2xl text-purple-500"></i>
+            <div className="w-9 h-9 rounded-lg bg-purple-500/10 flex items-center justify-center">
+              <i className="bi bi-activity text-base text-purple-500"></i>
             </div>
 
           </div>
         </div>
 
         {/* Alerts */}
-        <div className="bg-[#111827] border border-gray-800 rounded-xl p-6">
+        <div className="bg-white border border-gray-200 rounded-xl p-4 dark:bg-[#111827] dark:border-gray-800">
           <div className="flex items-center justify-between">
 
             <div>
-              <p className="text-gray-500 text-sm mb-3">
+              <p className="text-gray-500 dark:text-gray-500 text-xs mb-2">
                 Alerts Today
               </p>
 
-              <h2 className="text-3xl font-bold">
+              <h2 className="text-xl font-bold">
                 {totalAlerts}
               </h2>
             </div>
 
-            <div className="w-12 h-12 rounded-lg bg-orange-500/10 flex items-center justify-center">
-              <i className="bi bi-exclamation-triangle text-2xl text-orange-500"></i>
+            <div className="w-9 h-9 rounded-lg bg-orange-500/10 flex items-center justify-center">
+              <i className="bi bi-exclamation-triangle text-base text-orange-500"></i>
             </div>
 
           </div>
@@ -287,23 +284,23 @@ const Dashboard = () => {
       {/* Water Level Chart */}
       {/* -------------------------------- */}
 
-      <div className="bg-[#111827] border border-gray-800 rounded-xl p-6 mb-6">
+      <div className="bg-white border border-gray-200 rounded-xl p-4 mb-4 dark:bg-[#111827] dark:border-gray-800">
 
-        <div className="mb-6">
-          <h2 className="text-xl font-bold">
+        <div className="mb-4">
+          <h2 className="text-base font-bold">
             Water Level
           </h2>
 
-          <p className="text-gray-500 text-sm">
+          <p className="text-gray-500 dark:text-gray-500 text-xs">
             Latest sensor readings
           </p>
         </div>
 
-        <div className="h-[350px]">
+        <div className="h-[260px]">
 
           {chartData.length === 0 ? (
             <div className="h-full flex items-center justify-center">
-              <p className="text-gray-600">
+              <p className="text-gray-400 dark:text-gray-600 text-sm">
                 No sensor data available
               </p>
             </div>
@@ -316,16 +313,19 @@ const Dashboard = () => {
 
                 <CartesianGrid
                   strokeDasharray="3 3"
-                  stroke="#1f2937"
+                  stroke="#e5e7eb"
+                  className="dark:opacity-30"
                 />
 
                 <XAxis
                   dataKey="time"
-                  stroke="#6b7280"
+                  stroke="#9ca3af"
+                  fontSize={11}
                 />
 
                 <YAxis
-                  stroke="#6b7280"
+                  stroke="#9ca3af"
+                  fontSize={11}
                 />
 
                 <Tooltip
@@ -334,6 +334,7 @@ const Dashboard = () => {
                     border: "1px solid #374151",
                     borderRadius: "8px",
                     color: "#fff",
+                    fontSize: "12px",
                   }}
                 />
 
@@ -341,9 +342,9 @@ const Dashboard = () => {
                   type="monotone"
                   dataKey="waterLevel"
                   stroke="#3b82f6"
-                  strokeWidth={3}
+                  strokeWidth={2}
                   dot={false}
-                  activeDot={{ r: 6 }}
+                  activeDot={{ r: 5 }}
                 />
 
               </LineChart>
@@ -357,21 +358,21 @@ const Dashboard = () => {
       {/* Recent Readings */}
       {/* -------------------------------- */}
 
-      <div className="bg-[#111827] border border-gray-800 rounded-xl p-6">
+      <div className="bg-white border border-gray-200 rounded-xl p-4 dark:bg-[#111827] dark:border-gray-800">
 
-        <div className="mb-6">
-          <h2 className="text-xl font-bold">
+        <div className="mb-4">
+          <h2 className="text-base font-bold">
             Recent Readings
           </h2>
 
-          <p className="text-gray-500 text-sm">
+          <p className="text-gray-500 dark:text-gray-500 text-xs">
             Latest sensor measurements
           </p>
         </div>
 
         {recentReadings.length === 0 ? (
-          <div className="py-12 text-center">
-            <p className="text-gray-600">
+          <div className="py-8 text-center">
+            <p className="text-gray-400 dark:text-gray-600 text-sm">
               No sensor readings available
             </p>
           </div>
@@ -381,17 +382,17 @@ const Dashboard = () => {
             <table className="w-full">
 
               <thead>
-                <tr className="border-b border-gray-800 text-left">
+                <tr className="border-b border-gray-200 dark:border-gray-800 text-left">
 
-                  <th className="py-3 px-4 text-gray-500 text-sm font-medium">
+                  <th className="py-2 px-3 text-gray-500 dark:text-gray-500 text-xs font-medium">
                     Time
                   </th>
 
-                  <th className="py-3 px-4 text-gray-500 text-sm font-medium">
+                  <th className="py-2 px-3 text-gray-500 dark:text-gray-500 text-xs font-medium">
                     Water Level
                   </th>
 
-                  <th className="py-3 px-4 text-gray-500 text-sm font-medium">
+                  <th className="py-2 px-3 text-gray-500 dark:text-gray-500 text-xs font-medium">
                     Status
                   </th>
 
@@ -403,10 +404,10 @@ const Dashboard = () => {
                 {recentReadings.map((reading) => (
                   <tr
                     key={reading._id}
-                    className="border-b border-gray-800/50 hover:bg-gray-800/30"
+                    className="border-b border-gray-100 dark:border-gray-800/50 hover:bg-gray-50 dark:hover:bg-gray-800/30"
                   >
 
-                    <td className="py-4 px-4 text-gray-300">
+                    <td className="py-2.5 px-3 text-gray-600 dark:text-gray-300 text-sm">
                       {reading.timestamp
                         ? new Date(
                             reading.timestamp
@@ -414,13 +415,13 @@ const Dashboard = () => {
                         : "--"}
                     </td>
 
-                    <td className="py-4 px-4 text-white font-medium">
+                    <td className="py-2.5 px-3 text-gray-900 dark:text-white font-medium text-sm">
                       {reading.waterLevel ?? "--"} cm
                     </td>
 
-                    <td className="py-4 px-4">
+                    <td className="py-2.5 px-3">
                       <span
-                        className={`font-medium ${getStatusClass(
+                        className={`font-medium text-sm ${getStatusClass(
                           reading.status
                         )}`}
                       >
@@ -438,6 +439,7 @@ const Dashboard = () => {
           </div>
         )}
 
+      </div>
       </div>
 
       </main>
