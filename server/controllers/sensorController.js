@@ -18,13 +18,40 @@ export const getLatestReading = async (req, res) => {
 };
 
 
-// GET ALL SENSOR READINGS
+// GET SENSOR READINGS (paginated, max 10 per page)
 export const getRecentReadings = async (req, res) => {
   try {
-    const readings = await SensorReading.find()
-      .sort({ timestamp: -1 });
+    const MAX_LIMIT = 10;
 
-    res.status(200).json(readings);
+    const page = Math.max(1, parseInt(req.query.page, 10) || 1);
+
+    const limit = Math.min(
+      MAX_LIMIT,
+      Math.max(1, parseInt(req.query.limit, 10) || MAX_LIMIT)
+    );
+
+    const skip = (page - 1) * limit;
+
+    const [readings, totalRecords] = await Promise.all([
+      SensorReading.find()
+        .sort({ timestamp: -1 })
+        .skip(skip)
+        .limit(limit),
+
+      SensorReading.countDocuments(),
+    ]);
+
+    const totalPages = Math.max(1, Math.ceil(totalRecords / limit));
+
+    res.status(200).json({
+      readings,
+      pagination: {
+        page,
+        limit,
+        totalRecords,
+        totalPages,
+      },
+    });
   } catch (error) {
     console.error("Get sensor readings error:", error);
 

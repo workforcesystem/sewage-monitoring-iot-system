@@ -9,6 +9,8 @@ import {
   Tooltip,
   ResponsiveContainer,
 } from "recharts";
+import Sidebar from "../components/Sidebar";
+import Navbar from "../components/Navbar";
 
 const Dashboard = () => {
   const [latestReading, setLatestReading] = useState(null);
@@ -145,7 +147,13 @@ const Dashboard = () => {
   };
 
   return (
-    <div className="min-h-screen bg-[#030712] text-white p-6">
+    <div className="min-h-screen bg-[#030712] text-white">
+
+      <Sidebar />
+
+      <Navbar />
+
+      <main className="ml-64 pt-20 p-6">
       {/* -------------------------------- */}
       {/* Header */}
       {/* -------------------------------- */}
@@ -431,6 +439,8 @@ const Dashboard = () => {
         )}
 
       </div>
+
+      </main>
 
     </div>
   );
