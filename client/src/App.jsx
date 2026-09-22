@@ -12,6 +12,7 @@ import SensorData from "./pages/SensorData";
 import UserManagement from "./pages/UserManagement";
 import SuperAdminRoute from "./components/SuperAdminRoute";
 import Profile from "./pages/Profile";
+import Analytics from "./pages/Analytics";
 
 const App = () => {
   return (
@@ -73,7 +74,7 @@ const App = () => {
           path="/analytics"
           element={
             <ProtectedRoute>
-              <Placeholder title="Analytics" />
+              <Analytics />
             </ProtectedRoute>
           }
         />

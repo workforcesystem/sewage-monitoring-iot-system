@@ -6,6 +6,7 @@ import dotenv from "dotenv";
 import connectDB from "./config/db.js";
 
 import sensorRoutes from "./routes/sensorRoutes.js";
+import analyticsRoutes from "./routes/analyticsRoutes.js";
 
 
 import authRoutes from "./routes/authRoutes.js";
@@ -35,6 +36,7 @@ app.use(cookieParser());
 app.use("/api/auth", authRoutes);
 app.use("/api/users", userRoutes);
 app.use("/api/sensors", sensorRoutes);
+app.use("/api/analytics", analyticsRoutes);
 
 // Test route
 app.get("/", (req, res) => {
